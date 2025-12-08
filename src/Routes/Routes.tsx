@@ -1,10 +1,15 @@
 import { type AppRoute } from "./types";
 import LoginPage from "../pages/LoginPage";
+import Header from "../components/Header/Header";
 
 const publicRouter: AppRoute[] = [
   {
     path: "/login",
     element: <LoginPage />,
+  },
+  {
+    path: "/test",
+    element: <Header />,
   },
   //   {
   //     path: "/login",
