@@ -1,6 +1,9 @@
-import { type AppRoute } from "./types";
+import { type AppRoute } from "../routes/types";
+import MainLayout from "../app/layouts/user/MainLayout";
+
 import LoginPage from "../pages/LoginPage";
-import Header from "../components/Header/Header";
+import LuxuryHomepage from "../pages/HomePage";
+import LuxuryRegisterPage from "../pages/RegisterPage";
 
 const publicRouter: AppRoute[] = [
   {
@@ -8,8 +11,13 @@ const publicRouter: AppRoute[] = [
     element: <LoginPage />,
   },
   {
+    path: "/register",
+    element: <LuxuryRegisterPage />,
+  },
+  {
     path: "/test",
-    element: <Header />,
+    element: <LuxuryHomepage />,
+    layout: MainLayout,
   },
   //   {
   //     path: "/login",

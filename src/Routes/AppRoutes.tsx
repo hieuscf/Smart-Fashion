@@ -1,30 +1,28 @@
-import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { type AppRoute } from "./types.tsx";
-import { publicRouter, privateRouter, adminRouter } from "./Routes.tsx";
+import type { AppRoute } from "../routes/types";
+import { publicRouter, privateRouter, adminRouter } from "../routes/Routes";
 
 function AppRouter() {
   const renderRoute = (route: AppRoute, index: number) => {
-    const Layout = route.layout || React.Fragment;
+    const Layout = route.layout;
 
-    return (
-      <Route
-        key={index}
-        path={route.path}
-        element={<Layout>{route.element}</Layout>}
-      />
-    );
+    // Nếu route có layout → tạo route cha
+    if (Layout) {
+      return (
+        <Route key={index} element={<Layout />}>
+          <Route path={route.path} element={route.element} />
+        </Route>
+      );
+    }
+
+    // Không có layout → render route bình thường
+    return <Route key={index} path={route.path} element={route.element} />;
   };
 
   return (
     <Routes>
-      {/* public routes */}
       {publicRouter.map(renderRoute)}
-
-      {/* private routes */}
       {privateRouter.map(renderRoute)}
-
-      {/* admin routes */}
       {adminRouter.map(renderRoute)}
 
       {/* 404 fallback 
