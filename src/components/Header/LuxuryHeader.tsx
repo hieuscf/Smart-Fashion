@@ -95,7 +95,7 @@ const LuxuryHeader = () => {
                 </svg>
                 <input
                   type="text"
-                  placeholder="Rechercher une robe, une collection..."
+                  placeholder="Tìm kiếm sản phẩm..."
                   className="w-full pl-12 pr-4 py-3 bg-zinc-900/50 border border-zinc-800 text-white rounded-lg focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400/50 transition outline-none font-light placeholder-zinc-600"
                   autoFocus
                 />

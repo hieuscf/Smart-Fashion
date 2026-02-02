@@ -8,8 +8,11 @@ import {
   AlertCircle,
   Sparkles,
 } from "lucide-react";
+import { notify } from "../Utils/notify";
+import { useNavigate } from "react-router-dom";
 
 const LuxuryLoginPage = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,12 +27,14 @@ const LuxuryLoginPage = () => {
 
     if (!email || !password) {
       setError("Vui lòng điền đầy đủ thông tin");
+      notify.error("Vui lòng điền đầy đủ thông tin");
       setIsLoading(false);
       return;
     }
 
     if (!/\S+@\S+\.\S+/.test(email)) {
       setError("Email không hợp lệ");
+      notify.error("Email không hợp lệ");
       setIsLoading(false);
       return;
     }
@@ -37,7 +42,8 @@ const LuxuryLoginPage = () => {
     setTimeout(() => {
       console.log("Login:", { email, password, rememberMe });
       setIsLoading(false);
-      alert("Chào mừng quý khách đến với bộ sưu tập cao cấp!");
+      notify.success("Chào mừng quý khách đến với bộ sưu tập cao cấp!");
+      navigate("/home");
     }, 1500);
   };
 
@@ -241,7 +247,7 @@ const LuxuryLoginPage = () => {
                 </div>
                 <button
                   type="button"
-                  onClick={() => alert("Forgot password")}
+                  onClick={() => notify.info("Chức năng quên mật khẩu đang được phát triển")}
                   className="text-sm font-light text-amber-400 hover:text-amber-300 transition tracking-wide"
                 >
                   Quên mật khẩu?
@@ -281,7 +287,7 @@ const LuxuryLoginPage = () => {
               <div className="space-y-2">
                 <button
                   type="button"
-                  onClick={() => alert("Google login")}
+                  onClick={() => notify.info("Đăng nhập bằng Google đang được phát triển")}
                   className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-zinc-900/50 border border-zinc-800 rounded-lg hover:bg-zinc-900 hover:border-zinc-700 transition duration-300 font-light text-zinc-300 text-sm"
                 >
                   <svg className="w-5 h-5" viewBox="0 0 24 24">
@@ -307,7 +313,7 @@ const LuxuryLoginPage = () => {
 
                 <button
                   type="button"
-                  onClick={() => alert("Facebook login")}
+                  onClick={() => notify.info("Đăng nhập bằng Facebook đang được phát triển")}
                   className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-zinc-900/50 border border-zinc-800 rounded-lg hover:bg-zinc-900 hover:border-zinc-700 transition duration-300 font-light text-zinc-300 text-sm"
                 >
                   <svg className="w-5 h-5" fill="#1877F2" viewBox="0 0 24 24">
@@ -323,7 +329,7 @@ const LuxuryLoginPage = () => {
               <p className="text-sm text-zinc-400 font-light">
                 Thành viên mới?{" "}
                 <button
-                  onClick={() => alert("Navigate to Sign Up")}
+                  onClick={() => navigate("/register")}
                   className="font-normal text-amber-400 hover:text-amber-300 transition tracking-wide"
                 >
                   Tạo một tài khoản

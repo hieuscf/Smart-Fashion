@@ -28,7 +28,7 @@ const LuxuryTopBar = () => {
             <p className="text-amber-400 font-light flex items-center justify-center gap-1">
               <Sparkles className="w-3 h-3" />
               <span className="tracking-wide">
-                Livraison gratuite dès 10M VND
+                Miễn phí giao hàng đơn từ 10.000.000đ
               </span>
             </p>
           </div>

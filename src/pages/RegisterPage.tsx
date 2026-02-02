@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Eye,
   EyeOff,
@@ -14,6 +15,7 @@ import { useRegisterStore } from "@/stores/useAuthStore";
 import { notify } from "@/Utils/notify";
 
 const LuxuryRegisterPage = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [acceptNewsletter, setAcceptNewsletter] = useState(false);
@@ -55,6 +57,7 @@ const LuxuryRegisterPage = () => {
     const result = await submit();
     if (result.success) {
       notify.success(result.message || "Đăng ký thành công!");
+      navigate("/login");
     } else if (result.message) {
       notify.error(result.message);
     }
@@ -487,7 +490,7 @@ const LuxuryRegisterPage = () => {
                 <p className="text-sm text-zinc-400 font-light">
                   Đã có tài khoản?{" "}
                   <button
-                    onClick={() => alert("Navigate to Login")}
+                    onClick={() => navigate("/login")}
                     className="font-normal text-amber-400 hover:text-amber-300 transition tracking-wide"
                   >
                     Đăng nhập

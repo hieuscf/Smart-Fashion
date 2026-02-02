@@ -15,7 +15,7 @@ const publicRouter: AppRoute[] = [
     element: <LuxuryRegisterPage />,
   },
   {
-    path: "/test",
+    path: "/home",
     element: <LuxuryHomepage />,
     layout: MainLayout,
   },

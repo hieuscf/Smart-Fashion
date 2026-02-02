@@ -34,7 +34,7 @@ const LuxuryMobileMenu: React.FC<LuxuryMobileMenuProps> = ({
             {/* Collections */}
             <div className="space-y-1">
               <p className="text-xs text-zinc-500 font-light tracking-widest uppercase px-4 py-2">
-                Collections
+                Bộ Sưu Tập
               </p>
               {collections.map((item, index) => (
                 <a
@@ -57,7 +57,7 @@ const LuxuryMobileMenu: React.FC<LuxuryMobileMenuProps> = ({
             {/* Services */}
             <div className="space-y-1 pt-4">
               <p className="text-xs text-zinc-500 font-light tracking-widest uppercase px-4 py-2">
-                Services
+                Dịch Vụ
               </p>
               {services.map((item, index) => (
                 <a
@@ -79,7 +79,7 @@ const LuxuryMobileMenu: React.FC<LuxuryMobileMenuProps> = ({
                 className="block px-4 py-3 rounded-lg hover:bg-zinc-900/50 transition"
               >
                 <span className="text-sm text-zinc-300 font-light">
-                  Notre Histoire
+                  Về Chúng Tôi
                 </span>
               </a>
               <a
@@ -95,7 +95,7 @@ const LuxuryMobileMenu: React.FC<LuxuryMobileMenuProps> = ({
                 className="block px-4 py-3 rounded-lg hover:bg-zinc-900/50 transition"
               >
                 <span className="text-sm text-zinc-300 font-light">
-                  Contact
+                  Liên Hệ
                 </span>
               </a>
             </div>
@@ -105,14 +105,14 @@ const LuxuryMobileMenu: React.FC<LuxuryMobileMenuProps> = ({
           <div className="mt-8 pt-6 border-t border-zinc-800 space-y-3">
             <button className="w-full flex items-center justify-between px-4 py-3 bg-zinc-900/50 rounded-lg hover:bg-zinc-900 transition">
               <span className="text-sm text-zinc-300 font-light">
-                Mon Compte
+                Tài Khoản
               </span>
               <User className="w-4 h-4 text-amber-400" strokeWidth={1.5} />
             </button>
 
             <button className="w-full flex items-center justify-between px-4 py-3 bg-zinc-900/50 rounded-lg hover:bg-zinc-900 transition">
               <span className="text-sm text-zinc-300 font-light">
-                Liste de Souhaits
+                Yêu Thích
               </span>
               <div className="flex items-center gap-2">
                 <span className="text-xs text-amber-400">{wishlistCount}</span>

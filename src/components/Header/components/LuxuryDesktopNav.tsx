@@ -14,7 +14,7 @@ const LuxuryDesktopNav = () => {
         onMouseLeave={() => setActiveDropdown(null)}
       >
         <button className="flex items-center gap-1 text-zinc-300 hover:text-amber-400 transition font-light tracking-wide py-2">
-          <span>Collections</span>
+          <span>Bộ Sưu Tập</span>
           <ChevronDown
             className={`w-4 h-4 transition-transform ${
               activeDropdown === "collections" ? "rotate-180" : ""
@@ -55,7 +55,7 @@ const LuxuryDesktopNav = () => {
         onMouseLeave={() => setActiveDropdown(null)}
       >
         <button className="flex items-center gap-1 text-zinc-300 hover:text-amber-400 transition font-light tracking-wide py-2">
-          <span>Services</span>
+          <span>Dịch Vụ</span>
           <ChevronDown
             className={`w-4 h-4 transition-transform ${
               activeDropdown === "services" ? "rotate-180" : ""
@@ -89,7 +89,7 @@ const LuxuryDesktopNav = () => {
         href="#about"
         className="text-zinc-300 hover:text-amber-400 transition font-light tracking-wide"
       >
-        Notre Histoire
+        Về Chúng Tôi
       </a>
       <a
         href="#lookbook"
@@ -101,7 +101,7 @@ const LuxuryDesktopNav = () => {
         href="#contact"
         className="text-zinc-300 hover:text-amber-400 transition font-light tracking-wide"
       >
-        Contact
+        Liên Hệ
       </a>
     </nav>
   );
