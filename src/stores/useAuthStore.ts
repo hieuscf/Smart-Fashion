@@ -4,8 +4,6 @@ import { registerApi } from "@/services/authService";
 import axios from "axios";
 
 interface RegisterForm {
-  firstName: string;
-  lastName: string;
   name: string;
   email: string;
   password: string;
@@ -26,8 +24,6 @@ interface RegisterStore {
 
 export const useRegisterStore = create<RegisterStore>((set, get) => ({
   formData: {
-    firstName: "",
-    lastName: "",
     name: "",
     email: "",
     password: "",
@@ -51,7 +47,7 @@ export const useRegisterStore = create<RegisterStore>((set, get) => ({
     const { formData, acceptTerms } = get();
 
     // ===== validate =====
-    if (!formData.firstName || !formData.lastName) {
+    if (!formData.name.trim()) {
       const message = "Vui lòng nhập họ và tên";
       set({ error: message });
       return { success: false, message };
@@ -86,9 +82,7 @@ export const useRegisterStore = create<RegisterStore>((set, get) => ({
       set({ loading: true, error: null });
 
       await registerApi({
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        name: formData.firstName + " " + formData.lastName,
+        name: formData.name,
         email: formData.email,
         password: formData.password,
       });
@@ -99,12 +93,12 @@ export const useRegisterStore = create<RegisterStore>((set, get) => ({
       let message = "Đăng ký thất bại";
 
       if (axios.isAxiosError(err)) {
-          message = err.response?.data?.message || message;
+        message = err.response?.data?.message || message;
       }
 
       set({
-          error: message,
-          loading: false,
+        error: message,
+        loading: false,
       });
       return { success: false, message };
     }
@@ -113,8 +107,6 @@ export const useRegisterStore = create<RegisterStore>((set, get) => ({
   reset: () =>
     set({
       formData: {
-        firstName: "",
-        lastName: "",
         name: "",
         email: "",
         password: "",
@@ -122,5 +114,48 @@ export const useRegisterStore = create<RegisterStore>((set, get) => ({
       },
       acceptTerms: false,
       error: null,
+    }),
+}));
+
+// ==========================================
+// STORE AUTH (Login, Token, User Info)
+// ==========================================
+interface User {
+  id: string;
+  email: string;
+  name: string;
+  role: string;
+}
+
+interface AuthState {
+  user: User | null;
+  accessToken: string | null;
+  refreshToken: string | null;
+  isAuthenticated: boolean;
+
+  login: (userData: User, accessToken: string, refreshToken: string) => void;
+  logout: () => void;
+}
+
+export const useAuthStore = create<AuthState>()((set) => ({
+  user: null,
+  accessToken: null,
+  refreshToken: null,
+  isAuthenticated: false,
+
+  login: (user, accessToken, refreshToken) =>
+    set({
+      user,
+      accessToken,
+      refreshToken,
+      isAuthenticated: true,
+    }),
+
+  logout: () =>
+    set({
+      user: null,
+      accessToken: null,
+      refreshToken: null,
+      isAuthenticated: false,
     }),
 }));

@@ -10,9 +10,13 @@ import {
 } from "lucide-react";
 import { notify } from "../Utils/notify";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { loginApi } from "@/services/authService";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 const LuxuryLoginPage = () => {
   const navigate = useNavigate();
+  const { login } = useAuthStore();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -39,12 +43,51 @@ const LuxuryLoginPage = () => {
       return;
     }
 
-    setTimeout(() => {
-      console.log("Login:", { email, password, rememberMe });
-      setIsLoading(false);
+    try {
+      const response = await loginApi({ email, password });
+      const payload = response.data ?? {};
+
+      const accessToken =
+        payload.accessToken ??
+        payload.data?.accessToken ??
+        payload.token ??
+        payload.data?.token;
+
+      if (!accessToken) {
+        throw new Error("Không nhận được access token");
+      }
+
+      const refreshToken =
+        payload.refreshToken ?? payload.data?.refreshToken ?? "";
+
+      const user =
+        payload.user ??
+        payload.data?.user ??
+        payload.userInfo ??
+        payload.data?.userInfo ?? {
+          id: payload.id ?? payload.data?.id ?? "",
+          email: payload.email ?? email,
+          name: payload.name ?? email,
+          role: payload.role ?? "user",
+        };
+
+      login(user, accessToken, refreshToken);
       notify.success("Chào mừng quý khách đến với bộ sưu tập cao cấp!");
       navigate("/home");
-    }, 1500);
+    } catch (err: unknown) {
+      let message = "Đăng nhập thất bại";
+
+      if (axios.isAxiosError(err)) {
+        message = err.response?.data?.message || message;
+      } else if (err instanceof Error && err.message) {
+        message = err.message;
+      }
+
+      setError(message);
+      notify.error(message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
