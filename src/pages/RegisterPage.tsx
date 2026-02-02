@@ -245,57 +245,30 @@ const LuxuryRegisterPage = () => {
               )}
 
               {/* Name Fields */}
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label
-                    htmlFor="firstName"
-                    className="block text-sm font-light text-zinc-300 tracking-wide"
-                  >
-                    Họ
-                  </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <User
-                        className="h-5 w-5 text-amber-400/50"
-                        strokeWidth={1.5}
-                      />
-                    </div>
-                    <input
-                      id="firstName"
-                      name="firstName"
-                      type="text"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      className="block w-full pl-12 pr-4 py-3 bg-zinc-900/50 border border-zinc-800 text-white rounded-lg focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400/50 transition duration-300 outline-none font-light placeholder-zinc-600"
-                      placeholder="Marie"
+              {/* Name Field */}
+              <div className="space-y-2">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-light text-zinc-300 tracking-wide"
+                >
+                  Họ và tên
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <User
+                      className="h-5 w-5 text-amber-400/50"
+                      strokeWidth={1.5}
                     />
                   </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    htmlFor="lastName"
-                    className="block text-sm font-light text-zinc-300 tracking-wide"
-                  >
-                    Tên
-                  </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <User
-                        className="h-5 w-5 text-amber-400/50"
-                        strokeWidth={1.5}
-                      />
-                    </div>
-                    <input
-                      id="lastName"
-                      name="lastName"
-                      type="text"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      className="block w-full pl-12 pr-4 py-3 bg-zinc-900/50 border border-zinc-800 text-white rounded-lg focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400/50 transition duration-300 outline-none font-light placeholder-zinc-600"
-                      placeholder="Dupont"
-                    />
-                  </div>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="block w-full pl-12 pr-4 py-3 bg-zinc-900/50 border border-zinc-800 text-white rounded-lg focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400/50 transition duration-300 outline-none font-light placeholder-zinc-600"
+                    placeholder="Nguyễn Văn A"
+                  />
                 </div>
               </div>
 

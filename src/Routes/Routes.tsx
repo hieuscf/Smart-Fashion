@@ -5,25 +5,35 @@ import LoginPage from "../pages/LoginPage";
 import LuxuryHomepage from "../pages/HomePage";
 import LuxuryRegisterPage from "../pages/RegisterPage";
 
+import { Navigate } from "react-router-dom";
+import { PublicRoute, PrivateRoute } from "./guards";
+
 const publicRouter: AppRoute[] = [
   {
+    path: "/",
+    element: <Navigate to="/home" replace />,
+  },
+  {
     path: "/login",
-    element: <LoginPage />,
+    element: (
+      <PublicRoute>
+        <LoginPage />
+      </PublicRoute>
+    ),
   },
   {
     path: "/register",
-    element: <LuxuryRegisterPage />,
+    element: (
+      <PublicRoute>
+        <LuxuryRegisterPage />
+      </PublicRoute>
+    ),
   },
   {
     path: "/home",
     element: <LuxuryHomepage />,
     layout: MainLayout,
   },
-  //   {
-  //     path: "/login",
-  //     element: <Login />,
-  //     layout: DefaultLayout,
-  //   },
 ];
 
 const privateRouter: AppRoute[] = [
