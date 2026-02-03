@@ -4,6 +4,7 @@ import MainLayout from "../app/layouts/user/MainLayout";
 import LoginPage from "../pages/LoginPage";
 import LuxuryHomepage from "../pages/HomePage";
 import LuxuryRegisterPage from "../pages/RegisterPage";
+import ProfilePage from "../pages/ProfilePage";
 
 import { Navigate } from "react-router-dom";
 import { PublicRoute, PrivateRoute } from "./guards";
@@ -37,7 +38,15 @@ const publicRouter: AppRoute[] = [
 ];
 
 const privateRouter: AppRoute[] = [
-  // Example: need login
+  {
+    path: "/profile",
+    element: (
+      <PrivateRoute>
+        <ProfilePage />
+      </PrivateRoute>
+    ),
+    layout: MainLayout,
+  },
 ];
 
 const adminRouter: AppRoute[] = [
